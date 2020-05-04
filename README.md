@@ -1,5 +1,9 @@
 # Sacred Geometry
 
+Generating shapes like this..
+
+![Flower of life](https://mensfellowship.net/wp-content/uploads/2014/11/ART400FlowerOfLife.jpg)
+
 Built using https://konvajs.org/
 
 ## notes
