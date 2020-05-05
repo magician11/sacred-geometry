@@ -1,53 +1,25 @@
 import React, { Component } from 'react';
-import Konva from 'konva';
-import { Stage, Layer, Star, Text } from 'react-konva';
+import { Stage } from 'react-konva';
+import FlowerOfLife from './FlowerOfLife';
 
 class App extends Component {
-  handleDragStart = e => {
-    e.target.setAttrs({
-      shadowOffset: {
-        x: 15,
-        y: 15
-      },
-      scaleX: 1.1,
-      scaleY: 1.1
-    });
-  };
-  handleDragEnd = e => {
-    e.target.to({
-      duration: 0.5,
-      easing: Konva.Easings.ElasticEaseOut,
-      scaleX: 1,
-      scaleY: 1,
-      shadowOffsetX: 5,
-      shadowOffsetY: 5
-    });
-  };
   render() {
+    const radiusOfCircle = 111;
+    const circleLineWidth = 3;
+    const circleColour = 'black';
+    const windowCenter = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
+    };
+
     return (
       <Stage width={window.innerWidth} height={window.innerHeight}>
-        <Layer>
-          <Text text="Try to drag a star" />
-          {[...Array(10)].map((_, i) => (
-            <Star
-              key={i}
-              x={Math.random() * window.innerWidth}
-              y={Math.random() * window.innerHeight}
-              numPoints={5}
-              innerRadius={20}
-              outerRadius={40}
-              fill={Konva.Util.getRandomColor()}
-              opacity={0.8}
-              draggable
-              rotation={Math.random() * 180}
-              shadowColor="black"
-              shadowBlur={10}
-              shadowOpacity={0.6}
-              onDragStart={this.handleDragStart}
-              onDragEnd={this.handleDragEnd}
-            />
-          ))}
-        </Layer>
+        <FlowerOfLife
+          radiusOfCircle={radiusOfCircle}
+          circleLineWidth={circleLineWidth}
+          circleColour={circleColour}
+          centerOfMainCircle={windowCenter}
+        />
       </Stage>
     );
   }

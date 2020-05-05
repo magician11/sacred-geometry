@@ -6,8 +6,24 @@ Generating shapes like this..
 
 Built using https://konvajs.org/
 
+## construction
+
+Converting from polar to cartesian coordinates: [wikipedia](https://en.wikipedia.org/wiki/Polar_coordinate_system#Converting_between_polar_and_Cartesian_coordinates)
+
+```
+x = cx + r * cos(a)
+y = cy + r * sin(a)
+
+Where r is the radius, cx,cy the origin, and a the angle.
+```
+
+- https://stackoverflow.com/a/839931/2813041
+
+The angle has to be in radians for [Math](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin). To convert from degrees to radians [wikipedia](https://en.wikipedia.org/wiki/Radian#Conversion_between_radians_and_degrees)
+
 ## notes
 
+- theory: https://en.wikipedia.org/wiki/Overlapping_circles_grid
 - walkthrough: https://medium.com/@lavrton/using-react-with-html5-canvas-871d07d8d753
 - native JS code
   - for graphics walkthrough: https://alligator.io/js/drawing-shapes-canvas-api/
