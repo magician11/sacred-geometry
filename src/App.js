@@ -1,15 +1,16 @@
 import React from 'react';
 import { Stage } from 'react-konva';
-import FlowerOfLife from './FlowerOfLife';
+import SeedOfLife from './SeedOfLife';
+import './App.css';
 
 export default () => {
   const radiusOfCircle = 111;
-  const circleLineWidth = 1;
-  const circleColour = 'black';
+  const circleLineWidth = 2;
+  const circleColour = 'blue';
 
   return (
     <Stage width={window.innerWidth} height={window.innerHeight}>
-      <FlowerOfLife
+      <SeedOfLife
         radiusOfCircle={radiusOfCircle}
         circleLineWidth={circleLineWidth}
         circleColour={circleColour}
