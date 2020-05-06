@@ -4,8 +4,12 @@ import SeedOfLife from './SeedOfLife';
 import './App.css';
 
 export default () => {
-  const radiusOfCircle = 111;
-  const circleLineWidth = 2;
+  // make sure the circles fit onto any screen size
+  const radiusOfCircle =
+    window.innerHeight > window.innerWidth
+      ? window.innerWidth / 4
+      : window.innerHeight / 4;
+  const circleLineWidth = 3;
   const circleColour = 'blue';
 
   return (
