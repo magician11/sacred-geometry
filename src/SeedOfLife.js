@@ -1,14 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import { Layer, Circle } from 'react-konva';
 import Konva from 'konva';
-import { degreesToRadians, pointOnCircle } from './Utils';
+import { degreesToRadians, pointOnCircle, perfectScreenRadius } from './Utils';
 
-export default ({
-  radiusOfCircle,
-  circleLineWidth,
-  circleColour,
-  centerOfMainCircle
-}) => {
+export default ({ center }) => {
+  const radiusOfCircle = perfectScreenRadius();
+  const circleLineWidth = 3;
+  const circleColour = 'blue';
   const circleRefs = []; // array of refs to reference to move them
   const circleCoords = []; // the circles final coordinates that they animate to
 
@@ -42,8 +40,8 @@ export default ({
   const circles = [];
   // first add the center circle
   circleCoords[0] = {
-    x: centerOfMainCircle.x,
-    y: centerOfMainCircle.y
+    x: center.x,
+    y: center.y
   };
   circles.push(<GorgeousCircle key={0} i={0} />);
 
@@ -53,12 +51,12 @@ export default ({
       const coordsOnCircle = pointOnCircle(
         radiusOfCircle,
         degreesToRadians(angle),
-        centerOfMainCircle
+        center
       );
       circleCoords[i + 1] = coordsOnCircle;
       return <GorgeousCircle key={i + 1} i={i + 1} />;
     })
   );
 
-  return <Layer draggable>{circles}</Layer>;
+  return <Layer>{circles}</Layer>;
 };

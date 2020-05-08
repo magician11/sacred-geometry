@@ -6,4 +6,9 @@ const pointOnCircle = (radius, radians, origin) => {
   return { x, y };
 };
 
-export { degreesToRadians, pointOnCircle };
+const perfectScreenRadius = () =>
+  window.innerHeight > window.innerWidth
+    ? window.innerWidth / 4
+    : window.innerHeight / 4;
+
+export { degreesToRadians, pointOnCircle, perfectScreenRadius };
