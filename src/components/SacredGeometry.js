@@ -6,10 +6,20 @@ import { Stage } from 'react-konva';
 import { useLocation } from 'react-router-dom';
 import Home from './Home';
 import SeedOfLife from './SeedOfLife';
+import spaceImage from '../images/space.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: 'black'
+    backgroundImage: `url(${spaceImage})`,
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.69)'
+    }
   }
 }));
 
