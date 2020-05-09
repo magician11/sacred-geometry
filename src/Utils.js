@@ -11,4 +11,11 @@ const perfectScreenRadius = () =>
     ? window.innerWidth / 4
     : window.innerHeight / 4;
 
-export { degreesToRadians, pointOnCircle, perfectScreenRadius };
+const centerOfScreen = () => {
+  return {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  };
+};
+
+export { degreesToRadians, pointOnCircle, perfectScreenRadius, centerOfScreen };

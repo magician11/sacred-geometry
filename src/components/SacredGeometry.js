@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Stage } from 'react-konva';
 import { useLocation } from 'react-router-dom';
 import Home from './Home';
+import { centerOfScreen } from '../utils';
 import SeedOfLife from './SeedOfLife';
 import spaceImage from '../images/space.jpg';
 
@@ -34,22 +35,18 @@ export default () => {
       show: true
     });
 
+  const centralCoordinates = centerOfScreen();
   let shape;
-
-  const centerOfScreen = {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2
-  };
 
   switch (location.pathname) {
     case '/':
-      shape = <Home center={centerOfScreen} loaded={shapeLoaded} />;
+      shape = <Home center={centralCoordinates} loaded={shapeLoaded} />;
       break;
     case '/seed-of-life':
-      shape = <SeedOfLife center={centerOfScreen} loaded={shapeLoaded} />;
+      shape = <SeedOfLife center={centralCoordinates} loaded={shapeLoaded} />;
       break;
     default:
-      shape = <Home center={centerOfScreen} />;
+      shape = <Home center={centralCoordinates} loaded={shapeLoaded} />;
   }
 
   return (
