@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Stage } from 'react-konva';
 import { useLocation } from 'react-router-dom';
@@ -15,6 +16,13 @@ const useStyles = makeStyles(theme => ({
 export default () => {
   const classes = useStyles();
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const shapeLoaded = () =>
+    dispatch({
+      type: 'SET_SHOW_MENU',
+      show: true
+    });
 
   let shape;
 
@@ -25,10 +33,10 @@ export default () => {
 
   switch (location.pathname) {
     case '/':
-      shape = <Home center={centerOfScreen} />;
+      shape = <Home center={centerOfScreen} loaded={shapeLoaded} />;
       break;
     case '/seed-of-life':
-      shape = <SeedOfLife center={centerOfScreen} />;
+      shape = <SeedOfLife center={centerOfScreen} loaded={shapeLoaded} />;
       break;
     default:
       shape = <Home center={centerOfScreen} />;

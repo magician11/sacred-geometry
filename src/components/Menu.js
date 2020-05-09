@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation, useHistory } from 'react-router-dom';
 import {
@@ -17,21 +18,27 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: theme.spacing(4),
     right: theme.spacing(4)
+  },
+  reload: {
+    position: 'absolute',
+    bottom: theme.spacing(4),
+    left: theme.spacing(4)
   }
 }));
 
-export default () => {
+export default ({ refresh }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const showMenu = useSelector(state => state.showMenu);
   const history = useHistory();
   const location = useLocation();
   const [showDialog, setShowDialog] = useState(false);
-  const [shapeChooser, setShapeChooser] = useState(true);
 
   const handleCloseDialog = () => setShowDialog(false);
 
   return (
     <Fragment>
-      <Fade in={shapeChooser} style={{ transitionDelay: '8800ms' }}>
+      <Fade in={showMenu}>
         <Fab
           aria-label={'shape'}
           className={classes.menu}
@@ -41,6 +48,7 @@ export default () => {
           <ChangeHistoryIcon />
         </Fab>
       </Fade>
+
       <Dialog open={showDialog} onClose={handleCloseDialog}>
         <DialogTitle>Choose your geometric shape</DialogTitle>
         <DialogContent>
@@ -49,8 +57,10 @@ export default () => {
             onChange={event => {
               history.push(event.target.value);
               setShowDialog(false);
-              setShapeChooser(false);
-              setTimeout(() => setShapeChooser(true), 8000);
+              dispatch({
+                type: 'SET_SHOW_MENU',
+                show: false
+              });
             }}
           >
             <MenuItem value={'/'}>Home (△)</MenuItem>

@@ -1,19 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { Layer, RegularPolygon } from 'react-konva';
 import Konva from 'konva';
-import { perfectScreenRadius } from './Utils';
+import { perfectScreenRadius } from '../utils';
 
-export default ({ center }) => {
+export default ({ center, loaded }) => {
   let triangleRef;
   useEffect(() => {
-    if (triangleRef) {
-      triangleRef.current.to({
-        opacity: 1,
-        duration: 3,
-        easing: Konva.Easings.StrongEaseInOut // https://konvajs.org/api/Konva.Easings.html
-      });
-    }
-  }, [triangleRef]);
+    triangleRef.current.to({
+      onFinish: () => {
+        loaded();
+      },
+      opacity: 1,
+      duration: 3,
+      easing: Konva.Easings.StrongEaseInOut
+    });
+  }, [triangleRef, loaded]);
 
   const radiusOfTriangle = perfectScreenRadius();
 
@@ -23,7 +24,7 @@ export default ({ center }) => {
         sides={3}
         radius={radiusOfTriangle}
         stroke="yellow"
-        strokeWidth={4}
+        strokeWidth={11}
         x={center.x}
         y={center.y}
         ref={(triangleRef = useRef())}

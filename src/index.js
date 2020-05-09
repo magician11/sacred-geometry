@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { CssBaseline } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import AppCanvas from './App';
+import AppCanvas from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 const App = () => {

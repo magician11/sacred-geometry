@@ -1,26 +1,36 @@
 import React, { useRef, useEffect } from 'react';
 import { Layer, Circle } from 'react-konva';
 import Konva from 'konva';
-import { degreesToRadians, pointOnCircle, perfectScreenRadius } from './Utils';
+import { degreesToRadians, pointOnCircle, perfectScreenRadius } from '../utils';
 
-export default ({ center }) => {
+export default ({ center, loaded }) => {
+  // const dispatch = useDispatch();
   const radiusOfCircle = perfectScreenRadius();
   const circleLineWidth = 3;
   const circleColour = 'blue';
   const circleRefs = []; // array of refs to reference to move them
   const circleCoords = []; // the circles final coordinates that they animate to
+  const circlesDrawn = [];
 
   // animate the circles to their final position
   useEffect(() => {
     circleRefs.forEach((circleRef, i) => {
+      circlesDrawn[i] = false;
       circleRef.current.to({
+        onFinish: () => {
+          circlesDrawn[i] = true;
+          const allDone = circlesDrawn.reduce((acc, curr) => acc && curr);
+          if (allDone) {
+            loaded();
+          }
+        },
         x: circleCoords[i].x,
         y: circleCoords[i].y,
         duration: Math.random() * 8, // make the rings come in at different times
         easing: Konva.Easings.StrongEaseInOut // https://konvajs.org/api/Konva.Easings.html
       });
     });
-  }, [circleRefs, circleCoords]);
+  }, [circleRefs, circleCoords, circlesDrawn, loaded]);
 
   const GorgeousCircle = ({ i }) => (
     <Circle
