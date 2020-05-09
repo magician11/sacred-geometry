@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, forwardRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -9,7 +9,9 @@ import {
   DialogTitle,
   DialogContent,
   Select,
-  MenuItem
+  MenuItem,
+  Slide,
+  Zoom
 } from '@material-ui/core';
 import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
 
@@ -25,6 +27,8 @@ const useStyles = makeStyles(theme => ({
     left: theme.spacing(4)
   }
 }));
+
+const Transition = forwardRef((props, ref) => <Zoom in ref={ref} {...props} />);
 
 export default ({ refresh }) => {
   const classes = useStyles();
@@ -49,7 +53,11 @@ export default ({ refresh }) => {
         </Fab>
       </Fade>
 
-      <Dialog open={showDialog} onClose={handleCloseDialog}>
+      <Dialog
+        open={showDialog}
+        onClose={handleCloseDialog}
+        TransitionComponent={Transition}
+      >
         <DialogTitle>Choose your geometric shape</DialogTitle>
         <DialogContent>
           <Select
