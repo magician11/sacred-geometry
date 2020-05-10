@@ -10,7 +10,6 @@ import {
   DialogContent,
   Select,
   MenuItem,
-  Slide,
   Zoom
 } from '@material-ui/core';
 import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
