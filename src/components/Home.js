@@ -12,7 +12,7 @@ export default ({ center, loaded }) => {
       },
       opacity: 1,
       duration: 3,
-      easing: Konva.Easings.StrongEaseIn
+      easing: Konva.Easings.StrongEaseInOut
     });
   }, [triangleRef, loaded]);
 
