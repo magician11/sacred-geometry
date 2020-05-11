@@ -71,6 +71,7 @@ export default ({ refresh }) => {
             }}
           >
             <MenuItem value={'/'}>Home (△)</MenuItem>
+            <MenuItem value={'/cube'}>Cube</MenuItem>
             <MenuItem value={'/seed-of-life'}>The Seed Of Life</MenuItem>
           </Select>
         </DialogContent>

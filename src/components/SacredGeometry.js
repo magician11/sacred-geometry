@@ -2,16 +2,17 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Stage } from 'react-konva';
 import { useLocation } from 'react-router-dom';
 import Home from './Home';
 import { centerOfScreen } from '../utils';
 import SeedOfLife from './SeedOfLife';
+import Cube from './Cube';
 import spaceImage from '../images/space.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundImage: `url(${spaceImage})`,
+    height: '100vh',
     '&:before': {
       content: '""',
       position: 'absolute',
@@ -45,15 +46,12 @@ export default () => {
     case '/seed-of-life':
       shape = <SeedOfLife center={centralCoordinates} loaded={shapeLoaded} />;
       break;
+    case '/cube':
+      shape = <Cube loaded={shapeLoaded} />;
+      break;
     default:
       shape = <Home center={centralCoordinates} loaded={shapeLoaded} />;
   }
 
-  return (
-    <Box className={classes.root}>
-      <Stage width={window.innerWidth} height={window.innerHeight}>
-        {shape}
-      </Stage>
-    </Box>
-  );
+  return <Box className={classes.root}>{shape}</Box>;
 };
