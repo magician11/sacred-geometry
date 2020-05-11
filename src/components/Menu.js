@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     bottom: theme.spacing(4),
     right: theme.spacing(4)
   },
+  shapes: {
+    minWidth: theme.spacing(18)
+  },
   reload: {
     position: 'absolute',
     bottom: theme.spacing(4),
@@ -61,6 +64,7 @@ export default ({ refresh }) => {
         <DialogContent>
           <Select
             value={location.pathname}
+            className={classes.shapes}
             onChange={event => {
               history.push(event.target.value);
               setShowDialog(false);
