@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Layer, Circle } from 'react-konva';
+import { Stage, Layer, Circle } from 'react-konva';
 import Konva from 'konva';
 import { degreesToRadians, pointOnCircle, perfectScreenRadius } from '../utils';
 
@@ -68,5 +68,9 @@ export default ({ center, loaded }) => {
     })
   );
 
-  return <Layer>{circles}</Layer>;
+  return (
+    <Stage width={window.innerWidth} height={window.innerHeight}>
+      <Layer>{circles}</Layer>
+    </Stage>
+  );
 };

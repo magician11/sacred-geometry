@@ -30,3 +30,9 @@ The angle has to be in radians for [Math](https://developer.mozilla.org/en-US/do
   - https://codeburst.io/creating-and-drawing-on-an-html5-canvas-using-javascript-93da75f001c1
   - a smiley face: https://www.w3resource.com/javascript-exercises/javascript-drawing-exercise-5.php
   - details on the canvas: https://eloquentjavascript.net/17_canvas.html
+
+## 3D shapes
+
+React with three.js directly (with hooks) - https://codepen.io/WebSeed/pen/ZmXxKz
+react-three-fibre - https://github.com/react-spring/react-three-fiber
+to create 360 and VR experiences - https://facebook.github.io/react-360/

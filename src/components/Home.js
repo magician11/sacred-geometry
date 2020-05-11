@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Layer, RegularPolygon } from 'react-konva';
+import { Stage, Layer, RegularPolygon } from 'react-konva';
 import Konva from 'konva';
 import { perfectScreenRadius } from '../utils';
 
@@ -12,24 +12,26 @@ export default ({ center, loaded }) => {
       },
       opacity: 1,
       duration: 3,
-      easing: Konva.Easings.StrongEaseInOut
+      easing: Konva.Easings.StrongEaseIn
     });
   }, [triangleRef, loaded]);
 
   const radiusOfTriangle = perfectScreenRadius();
 
   return (
-    <Layer>
-      <RegularPolygon
-        sides={3}
-        radius={radiusOfTriangle}
-        stroke="yellow"
-        strokeWidth={11}
-        x={center.x}
-        y={center.y}
-        ref={(triangleRef = useRef())}
-        opacity={0}
-      />
-    </Layer>
+    <Stage width={window.innerWidth} height={window.innerHeight}>
+      <Layer>
+        <RegularPolygon
+          sides={3}
+          radius={radiusOfTriangle}
+          stroke="yellow"
+          strokeWidth={11}
+          x={center.x}
+          y={center.y}
+          ref={(triangleRef = useRef())}
+          opacity={0}
+        />
+      </Layer>
+    </Stage>
   );
 };
