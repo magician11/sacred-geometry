@@ -12,7 +12,7 @@ import spaceImage from '../images/space.jpg';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundImage: `url(${spaceImage})`,
-    height: '100vh',
+    height: window.innerHeight,
     '&:before': {
       content: '""',
       position: 'absolute',
