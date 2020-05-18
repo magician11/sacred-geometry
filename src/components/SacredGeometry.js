@@ -1,12 +1,14 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
+import { Stage, Layer } from 'react-konva';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
-import Home from './Home';
+import Triangle from './shapes/Triangle';
 import { centerOfScreen } from '../utils';
-import SeedOfLife from './SeedOfLife';
-import Cube from './Cube';
+import SeedOfLife from './shapes/SeedOfLife';
+import FlowerOfLife from './shapes/FlowerOfLife';
+import Cube from './shapes/Cube';
 import spaceImage from '../images/space.jpg';
 
 const useStyles = makeStyles(theme => ({
@@ -41,16 +43,37 @@ export default () => {
 
   switch (location.pathname) {
     case '/':
-      shape = <Home center={centralCoordinates} loaded={shapeLoaded} />;
+      shape = (
+        <Stage width={window.innerWidth} height={window.innerHeight}>
+          <Triangle center={centralCoordinates} loaded={shapeLoaded} />
+        </Stage>
+      );
       break;
     case '/seed-of-life':
-      shape = <SeedOfLife center={centralCoordinates} loaded={shapeLoaded} />;
+      shape = (
+        <Stage width={window.innerWidth} height={window.innerHeight}>
+          <Layer>
+            <SeedOfLife center={centralCoordinates} loaded={shapeLoaded} />
+          </Layer>
+        </Stage>
+      );
+      break;
+    case '/flower-of-life':
+      shape = (
+        <Stage width={window.innerWidth} height={window.innerHeight}>
+          <FlowerOfLife center={centralCoordinates} loaded={shapeLoaded} />
+        </Stage>
+      );
       break;
     case '/cube':
       shape = <Cube loaded={shapeLoaded} />;
       break;
     default:
-      shape = <Home center={centralCoordinates} loaded={shapeLoaded} />;
+      shape = (
+        <Stage width={window.innerWidth} height={window.innerHeight}>
+          <Triangle center={centralCoordinates} loaded={shapeLoaded} />
+        </Stage>
+      );
   }
 
   return <Box className={classes.root}>{shape}</Box>;

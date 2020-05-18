@@ -36,3 +36,8 @@ The angle has to be in radians for [Math](https://developer.mozilla.org/en-US/do
 React with three.js directly (with hooks) - https://codepen.io/WebSeed/pen/ZmXxKz
 react-three-fibre - https://github.com/react-spring/react-three-fiber
 to create 360 and VR experiences - https://facebook.github.io/react-360/
+
+## specific shapes
+
+- flower of life https://jsfiddle.net/5ak8P/
+- https://www.sacred-geometry.es/?q=en/content/flower-life

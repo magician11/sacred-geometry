@@ -6,10 +6,11 @@ const pointOnCircle = (radius, radians, origin) => {
   return { x, y };
 };
 
-const perfectScreenRadius = () =>
+// the width a shape needs to be able to fit side by side
+const perfectShapeWidth = shapes =>
   window.innerHeight > window.innerWidth
-    ? window.innerWidth / 4
-    : window.innerHeight / 4;
+    ? window.innerWidth / (shapes * 2)
+    : window.innerHeight / (shapes * 2);
 
 const centerOfScreen = () => {
   return {
@@ -18,4 +19,15 @@ const centerOfScreen = () => {
   };
 };
 
-export { degreesToRadians, pointOnCircle, perfectScreenRadius, centerOfScreen };
+const randomPositionOnScreen = () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight
+});
+
+export {
+  degreesToRadians,
+  pointOnCircle,
+  perfectShapeWidth,
+  centerOfScreen,
+  randomPositionOnScreen
+};
