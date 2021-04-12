@@ -17,10 +17,12 @@ const Box = () => {
   );
 };
 
-export default ({ loaded }) => (
+const Cube = ({ loaded }) => (
   <Canvas onCreated={() => loaded()}>
     <ambientLight />
     <pointLight position={[11, 11, 11]} />
     <Box />
   </Canvas>
 );
+
+export default Cube;

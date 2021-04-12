@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 const Transition = forwardRef((props, ref) => <Zoom in ref={ref} {...props} />);
 
-export default ({ refresh }) => {
+const Menu = ({ refresh }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const showMenu = useSelector(state => state.showMenu);
@@ -84,3 +84,5 @@ export default ({ refresh }) => {
     </Fragment>
   );
 };
+
+export default Menu;

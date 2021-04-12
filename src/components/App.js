@@ -9,7 +9,7 @@ import SacredGeometry from './SacredGeometry';
 
 const store = createStore(rootReducer);
 
-export default () => (
+const App = () => (
   <Router>
     <Provider store={store}>
       <SacredGeometry />
@@ -17,3 +17,5 @@ export default () => (
     </Provider>
   </Router>
 );
+
+export default App;

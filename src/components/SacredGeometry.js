@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default () => {
+const SacredGeometry = () => {
   const classes = useStyles();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -78,3 +78,5 @@ export default () => {
 
   return <Box className={classes.root}>{shape}</Box>;
 };
+
+export default SacredGeometry;

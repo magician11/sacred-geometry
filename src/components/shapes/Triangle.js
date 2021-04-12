@@ -3,7 +3,7 @@ import { Layer, RegularPolygon } from 'react-konva';
 import Konva from 'konva';
 import { perfectShapeWidth } from '../../utils';
 
-export default ({ center, loaded }) => {
+const Triangle = ({ center, loaded }) => {
   let triangleRef;
   useEffect(() => {
     triangleRef.current.to({
@@ -33,3 +33,5 @@ export default ({ center, loaded }) => {
     </Layer>
   );
 };
+
+export default Triangle;

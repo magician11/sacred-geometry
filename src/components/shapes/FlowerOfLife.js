@@ -10,7 +10,7 @@ import {
 
 import SeedOfLife from './SeedOfLife';
 
-export default ({ center, loaded }) => {
+const FlowerOfLife = ({ center, loaded }) => {
   const radiusOfCircle = perfectShapeWidth(4);
   const seedOfLifeRefs = []; // array of refs to reference them
   const seedOfLifesDrawn = [];
@@ -32,7 +32,7 @@ export default ({ center, loaded }) => {
         easing: Konva.Easings.StrongEaseInOut // https://konvajs.org/api/Konva.Easings.html
       });
     });
-  }, [seedOfLifeRefs, seedOfLifesDrawn, loaded]);
+  }, [seedOfLifeRefs, loaded, seedOfLifesDrawn]);
 
   let shape = 0;
   const seedsOfLife = [
@@ -88,3 +88,5 @@ export default ({ center, loaded }) => {
 
   return <Layer>{seedsOfLife}</Layer>;
 };
+
+export default FlowerOfLife;
