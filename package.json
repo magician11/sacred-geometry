@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "@react-three/drei": "^4.1.8",
+    "@react-three/fiber": "^6.0.12",
     "konva": "^7.2.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -12,7 +14,6 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-three-fiber": "^4.2.3",
     "redux": "^4.0.5",
     "three": "^0.127.0"
   },

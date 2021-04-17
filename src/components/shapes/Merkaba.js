@@ -1,30 +1,33 @@
 import React, { useRef } from 'react';
-import { Canvas, useFrame } from 'react-three-fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei';
 
-const Box = () => {
-  // This reference will give us direct access to the mesh
+const Pyramid = () => {
   const mesh = useRef();
+  useFrame((state, delta) => (mesh.current.rotation.y += 0.02));
 
-  // Rotate mesh every frame, this is outside of React without overhead
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
-
-  const length = 1.28;
   return (
     <mesh ref={mesh}>
-      <boxBufferGeometry attach="geometry" args={[length, length, length]} />
-      <meshStandardMaterial attach="material" color={'royalblue'} />
+      <cylinderGeometry args={[0, 3, 3, 3]} />
+      <meshBasicMaterial color="blue" />
     </mesh>
   );
 };
 
-export default ({ loaded }) => (
-  <Canvas onCreated={() => loaded()}>
-    <ambientLight />
-    <pointLight position={[11, 11, 11]} />
-    <Box />
-  </Canvas>
+const MerkabaScene = ({ loaded }) => (
+  <div style={{ height: '100vh', backgroundColor: 'black' }}>
+    <Canvas onCreated={() => loaded()}>
+      <Stars />
+      <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+      <Pyramid />
+      <OrbitControls />
+    </Canvas>
+  </div>
 );
 
+export default MerkabaScene;
+
+/*
 
 //Get the height and the width of the window
 var ww = window.innerWidth,
@@ -32,22 +35,22 @@ var ww = window.innerWidth,
 
 function init(){
 
-	/* WEBGL RENDERER */
+	// WEBGL RENDERER 
 	renderer = new THREE.WebGLRenderer({canvas : document.getElementById('scene')});
 	renderer.setClearColor(0x3F3F3F);
 	renderer.setSize(ww,wh);
 
-	/* SCENE */
+	// SCENE 
 	scene = new THREE.Scene();
 
-	/* CAMERA */
+	// CAMERA 
 	camera = new THREE.PerspectiveCamera(20, ww/wh, 1, 10000 );
 	camera.position.set(0, 250, 700);
 	camera.lookAt(new THREE.Vector3(0,0,0));
 	scene.add(camera);
 
 
-	/* LIGHT */
+	// LIGHT 
 	light = new THREE.DirectionalLight(0xffffff, 1);
 	light.position.set( 0, 500, 500 );
 	scene.add(light);
@@ -67,7 +70,7 @@ function createShapes(){
 
 	material = new THREE.MeshLambertMaterial({color:0x00ff00, wireframe: false});
 
-	/* PYRAMID */
+	// PYRAMID
 	//This a bit weird because it's like a cylinder
   
 	geometryPyramid = new THREE.CylinderGeometry(0, 75, 100, 3, false); 
@@ -83,7 +86,7 @@ function createShapes(){
   pyramid2.rotation.x = 380;
 	scene.add(pyramid2);
 
-	// /* PLANE */
+	//  PLANE 
 	// geometryPlane = new THREE.PlaneGeometry( 50, 100);
 	// plane = new THREE.Mesh(geometryPlane, material);
 	// plane.position.x = 300;

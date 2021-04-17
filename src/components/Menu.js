@@ -78,6 +78,7 @@ const Menu = ({ refresh }) => {
             <MenuItem value={'/cube'}>Cube</MenuItem>
             <MenuItem value={'/seed-of-life'}>The Seed Of Life</MenuItem>
             <MenuItem value={'/flower-of-life'}>The Flower Of Life</MenuItem>
+            <MenuItem value={'/merkaba'}>Merkaba</MenuItem>
           </Select>
         </DialogContent>
       </Dialog>

@@ -8,6 +8,7 @@ import Triangle from './shapes/Triangle';
 import { centerOfScreen } from '../utils';
 import SeedOfLife from './shapes/SeedOfLife';
 import FlowerOfLife from './shapes/FlowerOfLife';
+import Merkaba from './shapes/Merkaba';
 import Cube from './shapes/Cube';
 import spaceImage from '../images/space.jpg';
 
@@ -67,6 +68,9 @@ const SacredGeometry = () => {
       break;
     case '/cube':
       shape = <Cube loaded={shapeLoaded} />;
+      break;
+    case '/merkaba':
+      shape = <Merkaba loaded={shapeLoaded} />;
       break;
     default:
       shape = (
