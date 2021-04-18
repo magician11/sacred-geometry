@@ -1,26 +1,51 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei';
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  Stars,
+  useNormalTexture
+} from '@react-three/drei';
 
-const Pyramid = () => {
+const Merkaba = () => {
   const mesh = useRef();
-  useFrame((state, delta) => (mesh.current.rotation.y += 0.02));
+  useFrame((state, delta) => (mesh.current.rotation.y += 0.01));
+  const [normalTexture] = useNormalTexture(11); // https://github.com/emmelleppi/normal-maps
 
   return (
-    <mesh ref={mesh}>
-      <cylinderGeometry args={[0, 3, 3, 3]} />
-      <meshBasicMaterial color="blue" />
-    </mesh>
+    <group ref={mesh}>
+      <mesh>
+        <cylinderGeometry args={[0, 3, 3, 3]} />
+        <meshStandardMaterial
+          color="purple"
+          metalness={0.3}
+          normalMap={normalTexture}
+        />
+      </mesh>
+      <mesh ref={mesh} rotation={[3.15, 0, 0]} position={[0, -1.5, 0]}>
+        <cylinderGeometry args={[0, 3, 3, 3]} />
+        <meshStandardMaterial
+          color="purple"
+          metalness={0.3}
+          normalMap={normalTexture}
+        />
+      </mesh>
+    </group>
   );
 };
 
 const MerkabaScene = ({ loaded }) => (
   <div style={{ height: '100vh', backgroundColor: 'black' }}>
     <Canvas onCreated={() => loaded()}>
-      <Stars />
-      <PerspectiveCamera makeDefault position={[0, 0, 10]} />
-      <Pyramid />
-      <OrbitControls />
+      <Suspense fallback={null}>
+        <Stars />
+        <PerspectiveCamera makeDefault position={[11, 0, 11]} />
+        <ambientLight intensity={0.33} />
+        <spotLight position={[11, 11, 11]} angle={0.11} penumbra={1} />
+        <pointLight position={[33, 33, 33]} />
+        <Merkaba />
+        <OrbitControls />
+      </Suspense>
     </Canvas>
   </div>
 );
