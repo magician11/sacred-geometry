@@ -8,13 +8,17 @@ import {
 } from '@react-three/drei';
 
 const Merkaba = () => {
-  const mesh = useRef();
-  useFrame((state, delta) => (mesh.current.rotation.y += 0.01));
+  const topPyramid = useRef();
+  const bottomPyramid = useRef();
+  useFrame((state, delta) => {
+    topPyramid.current.rotation.y += 0.018;
+    bottomPyramid.current.rotation.y += 0.018;
+  });
   const [normalTexture] = useNormalTexture(11); // https://github.com/emmelleppi/normal-maps
 
   return (
-    <group ref={mesh}>
-      <mesh>
+    <group>
+      <mesh ref={topPyramid}>
         <cylinderGeometry args={[0, 3, 3, 3]} />
         <meshStandardMaterial
           color="purple"
@@ -22,7 +26,7 @@ const Merkaba = () => {
           normalMap={normalTexture}
         />
       </mesh>
-      <mesh ref={mesh} rotation={[3.15, 0, 0]} position={[0, -1.5, 0]}>
+      <mesh ref={bottomPyramid} rotation={[3.15, 0, 0]} position={[0, -1.5, 0]}>
         <cylinderGeometry args={[0, 3, 3, 3]} />
         <meshStandardMaterial
           color="purple"
