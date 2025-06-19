@@ -4,16 +4,16 @@ import React, {
   forwardRef,
   useMemo,
   useState,
-  useCallback,
-} from "react";
-import { Group, Circle } from "react-konva";
-import Konva from "konva";
+  useCallback
+} from 'react';
+import { Group, Circle } from 'react-konva';
+import Konva from 'konva';
 import {
   degreesToRadians,
   pointOnCircle,
   perfectShapeWidth,
-  randomPositionOnScreen,
-} from "../../utils";
+  randomPositionOnScreen
+} from '../../utils';
 
 // Move GorgeousCircle outside to prevent recreation
 const GorgeousCircle = React.memo(
@@ -22,7 +22,7 @@ const GorgeousCircle = React.memo(
     circleColour,
     circleLineWidth,
     initialPosition,
-    circleRef,
+    circleRef
   }) => (
     <Circle
       radius={radiusOfCircle}
@@ -31,12 +31,12 @@ const GorgeousCircle = React.memo(
       x={initialPosition.x}
       y={initialPosition.y}
       ref={circleRef}
-      shadowColor={"lightblue"}
+      shadowColor={'lightblue'}
       shadowBlur={11}
       shadowOffset={{ x: 1, y: 1 }}
       shadowOpacity={0.8}
     />
-  ),
+  )
 );
 
 export default forwardRef(
@@ -45,17 +45,17 @@ export default forwardRef(
       center,
       loaded = () => true,
       radiusOfCircle = perfectShapeWidth(2),
-      opacity = 1,
+      opacity = 1
     },
-    ref,
+    ref
   ) => {
     const circleLineWidth = 3;
-    const circleColour = "blue";
+    const circleColour = 'blue';
 
     // Stable arrays using useMemo
     const circleRefs = useMemo(
       () => Array.from({ length: 7 }, () => useRef()),
-      [],
+      []
     );
 
     const circleCoords = useMemo(() => {
@@ -68,7 +68,7 @@ export default forwardRef(
         coords[i + 1] = pointOnCircle(
           radiusOfCircle,
           degreesToRadians(angle),
-          center,
+          center
         );
       });
 
@@ -77,7 +77,7 @@ export default forwardRef(
 
     const initialPositions = useMemo(
       () => Array.from({ length: 7 }, () => randomPositionOnScreen()),
-      [],
+      []
     );
 
     // Track animation completion without state
@@ -106,7 +106,7 @@ export default forwardRef(
             x: circleCoords[i].x,
             y: circleCoords[i].y,
             duration: Math.random() * 8,
-            easing: Konva.Easings.StrongEaseInOut,
+            easing: Konva.Easings.StrongEaseInOut
           });
         }
       });
@@ -130,8 +130,8 @@ export default forwardRef(
         radiusOfCircle,
         circleColour,
         circleLineWidth,
-        initialPositions,
-      ],
+        initialPositions
+      ]
     );
 
     return (
@@ -139,5 +139,5 @@ export default forwardRef(
         {circles}
       </Group>
     );
-  },
+  }
 );

@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useMemo } from "react";
-import Konva from "konva";
-import { Layer, Circle } from "react-konva";
+import React, { useEffect, useRef, useMemo } from 'react';
+import Konva from 'konva';
+import { Layer, Circle } from 'react-konva';
 import {
   pointOnCircle,
   perfectShapeWidth,
-  degreesToRadians,
-} from "../../utils";
-import SeedOfLife from "./SeedOfLife";
+  degreesToRadians
+} from '../../utils';
+import SeedOfLife from './SeedOfLife';
 
 const FlowerOfLife = ({ center, loaded }) => {
   const radiusOfCircle = perfectShapeWidth(4);
-  const scaffoldingColour = "blue";
+  const scaffoldingColour = 'blue';
 
   // Calculate total number of elements (1 center + 6 surrounding + 2 scaffolding circles)
   const totalElements = 9;
@@ -18,7 +18,7 @@ const FlowerOfLife = ({ center, loaded }) => {
   // Stable refs array
   const seedOfLifeRefs = useMemo(
     () => Array.from({ length: totalElements }, () => useRef()),
-    [],
+    []
   );
 
   // Track animation completion without state
@@ -28,10 +28,10 @@ const FlowerOfLife = ({ center, loaded }) => {
   // Calculate positions for surrounding seeds of life
   const surroundingPositions = useMemo(
     () =>
-      [0, 60, 120, 180, 240, 300].map((angle) =>
-        pointOnCircle(radiusOfCircle, degreesToRadians(angle), center),
+      [0, 60, 120, 180, 240, 300].map(angle =>
+        pointOnCircle(radiusOfCircle, degreesToRadians(angle), center)
       ),
-    [center.x, center.y, radiusOfCircle],
+    [center.x, center.y, radiusOfCircle]
   );
 
   // Start animations
@@ -55,7 +55,7 @@ const FlowerOfLife = ({ center, loaded }) => {
           },
           opacity: 1,
           duration: i * Math.random() + i, // Staggered timing
-          easing: Konva.Easings.StrongEaseInOut,
+          easing: Konva.Easings.StrongEaseInOut
         });
       }
     });
@@ -74,7 +74,7 @@ const FlowerOfLife = ({ center, loaded }) => {
         radiusOfCircle={radiusOfCircle}
         ref={seedOfLifeRefs[refIndex++]}
         opacity={0}
-      />,
+      />
     );
 
     // Surrounding seeds of life
@@ -86,7 +86,7 @@ const FlowerOfLife = ({ center, loaded }) => {
           radiusOfCircle={radiusOfCircle}
           ref={seedOfLifeRefs[refIndex++]}
           opacity={0}
-        />,
+        />
       );
     });
 
@@ -102,11 +102,11 @@ const FlowerOfLife = ({ center, loaded }) => {
           strokeWidth={3}
           x={center.x}
           y={center.y}
-          shadowColor={"lightblue"}
+          shadowColor={'lightblue'}
           shadowBlur={11}
           shadowOffset={{ x: 1, y: 1 }}
           shadowOpacity={0.8}
-        />,
+        />
       );
     });
 
@@ -117,7 +117,7 @@ const FlowerOfLife = ({ center, loaded }) => {
     radiusOfCircle,
     surroundingPositions,
     scaffoldingColour,
-    seedOfLifeRefs,
+    seedOfLifeRefs
   ]);
 
   return <Layer>{elements}</Layer>;

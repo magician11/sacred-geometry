@@ -1,11 +1,11 @@
-import React, { useRef, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useRef, Suspense } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   OrbitControls,
   PerspectiveCamera,
   Stars,
-  useNormalTexture,
-} from "@react-three/drei";
+  useNormalTexture
+} from '@react-three/drei';
 
 const Merkaba = () => {
   const topPyramid = useRef();
@@ -50,7 +50,7 @@ const Merkaba = () => {
 };
 
 const MerkabaScene = ({ loaded }) => (
-  <div style={{ height: "100vh", backgroundColor: "black" }}>
+  <div style={{ height: '100vh', backgroundColor: 'black' }}>
     <Canvas onCreated={() => loaded()}>
       <Suspense fallback={null}>
         <Stars />

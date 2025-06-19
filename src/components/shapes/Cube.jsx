@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 
 const Box = () => {
   // This reference will give us direct access to the mesh
@@ -11,7 +11,7 @@ const Box = () => {
     <mesh ref={mesh}>
       <boxGeometry args={[length, length, length]} />
       <meshStandardMaterial
-        color={"royalblue"}
+        color={'royalblue'}
         roughness={0.4}
         metalness={0.1}
       />

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { Layer, RegularPolygon } from "react-konva";
-import Konva from "konva";
-import { perfectShapeWidth } from "../../utils";
+import React, { useEffect, useRef } from 'react';
+import { Layer, RegularPolygon } from 'react-konva';
+import Konva from 'konva';
+import { perfectShapeWidth } from '../../utils';
 
 const Triangle = ({ center, loaded }) => {
   const triangleRef = useRef();
@@ -15,7 +15,7 @@ const Triangle = ({ center, loaded }) => {
         },
         opacity: 1,
         duration: 3,
-        easing: Konva.Easings.StrongEaseInOut,
+        easing: Konva.Easings.StrongEaseInOut
       });
     }
   }, [loaded]); // Remove triangleRef from dependencies since it's stable
@@ -31,7 +31,7 @@ const Triangle = ({ center, loaded }) => {
         y={center.y}
         ref={triangleRef}
         opacity={0}
-        shadowColor={"gold"}
+        shadowColor={'gold'}
         shadowBlur={15}
         shadowOffset={{ x: 2, y: 2 }}
         shadowOpacity={0.6}

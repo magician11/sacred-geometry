@@ -1,25 +1,25 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import Menu from "./Menu";
-import SacredGeometry from "./SacredGeometry";
-import ErrorBoundary from "./ErrorBoundary";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+import Menu from './Menu';
+import SacredGeometry from './SacredGeometry';
+import ErrorBoundary from './ErrorBoundary';
 
 // Proper RTK slice - more consistent with Redux Toolkit patterns
 const menuSlice = createSlice({
-  name: "menu",
+  name: 'menu',
   initialState: {
-    showMenu: false,
+    showMenu: false
   },
   reducers: {
     setShowMenu: (state, action) => {
       state.showMenu = action.payload;
     },
-    toggleMenu: (state) => {
+    toggleMenu: state => {
       state.showMenu = !state.showMenu;
-    },
-  },
+    }
+  }
 });
 
 // Export actions for use in components
@@ -28,10 +28,10 @@ export const { setShowMenu, toggleMenu } = menuSlice.actions;
 // Configure store with proper RTK slice
 const store = configureStore({
   reducer: {
-    menu: menuSlice.reducer,
+    menu: menuSlice.reducer
   },
   // Enable Redux DevTools in development
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: process.env.NODE_ENV !== 'production'
 });
 
 const App = () => (

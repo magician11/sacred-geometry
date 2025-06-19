@@ -38,8 +38,8 @@ class ErrorBoundary extends React.Component {
           <Typography variant="body1" gutterBottom color="grey.400">
             The cosmic patterns have encountered an error
           </Typography>
-          <Button 
-            variant="outlined" 
+          <Button
+            variant="outlined"
             onClick={this.handleReset}
             sx={{ mt: 2, color: 'lightblue', borderColor: 'lightblue' }}
           >
