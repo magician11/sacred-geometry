@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import Menu from "./Menu";
 import SacredGeometry from "./SacredGeometry";
+import ErrorBoundary from "./ErrorBoundary";
 
-// Simple slice for the menu state
-const menuSlice = {
+// Proper RTK slice - more consistent with Redux Toolkit patterns
+const menuSlice = createSlice({
   name: "menu",
   initialState: {
     showMenu: false,
@@ -16,29 +16,40 @@ const menuSlice = {
     setShowMenu: (state, action) => {
       state.showMenu = action.payload;
     },
-  },
-};
-
-const store = configureStore({
-  reducer: {
-    menu: (state = menuSlice.initialState, action) => {
-      switch (action.type) {
-        case "menu/setShowMenu":
-          return { ...state, showMenu: action.payload };
-        default:
-          return state;
-      }
+    toggleMenu: (state) => {
+      state.showMenu = !state.showMenu;
     },
   },
+});
+
+// Export actions for use in components
+export const { setShowMenu, toggleMenu } = menuSlice.actions;
+
+// Configure store with proper RTK slice
+const store = configureStore({
+  reducer: {
+    menu: menuSlice.reducer,
+  },
+  // Enable Redux DevTools in development
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 const App = () => (
   <Router>
     <Provider store={store}>
-      <Routes>
-        <Route path="/*" element={<SacredGeometry />} />
-      </Routes>
-      <Menu />
+      <ErrorBoundary>
+        <Routes>
+          {/* More explicit routes - you could expand this if needed */}
+          <Route path="/" element={<SacredGeometry />} />
+          <Route path="/seed-of-life" element={<SacredGeometry />} />
+          <Route path="/flower-of-life" element={<SacredGeometry />} />
+          <Route path="/cube" element={<SacredGeometry />} />
+          <Route path="/merkaba" element={<SacredGeometry />} />
+          {/* Catch-all fallback */}
+          <Route path="*" element={<SacredGeometry />} />
+        </Routes>
+        <Menu />
+      </ErrorBoundary>
     </Provider>
   </Router>
 );
